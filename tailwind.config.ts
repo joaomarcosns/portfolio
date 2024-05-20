@@ -13,9 +13,6 @@ module.exports = {
       backgroundImage: {
         "hero-image": "url('/images/hero-bg.png')",
       },
-      fontFamily: {
-        mono: ["var(--font-code)", "monospace"],
-      },
       boxShadow: {
         button: "0px 0px 68px 7px rgba(5, 150, 105, 0.4)",
       },
