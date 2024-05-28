@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Fira_Code } from "next/font/google";
 import "./globals.css";
 import Header from "./_components/Header";
+import ContactForm from "./_components/ContactForm";
 
 const firaCode = Fira_Code({
   variable: "--font-code",
@@ -19,10 +20,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-Br" className={firaCode.variable}>
+    <html lang="pt-BR" className={firaCode.variable}>
       <body>
         <Header />
         {children}
+        <ContactForm />
       </body>
     </html>
   );
