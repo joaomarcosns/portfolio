@@ -3,6 +3,7 @@ import { Fira_Code } from "next/font/google";
 import "./globals.css";
 import Header from "./_components/Header";
 import ContactForm from "./_components/ContactForm";
+import Footer from "./_components/Footer/inde";
 
 const firaCode = Fira_Code({
   variable: "--font-code",
@@ -25,6 +26,7 @@ export default function RootLayout({
         <Header />
         {children}
         <ContactForm />
+        <Footer />
       </body>
     </html>
   );
