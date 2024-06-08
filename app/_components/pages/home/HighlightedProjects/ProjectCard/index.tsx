@@ -1,17 +1,22 @@
 import Link from "@/app/_components/Link";
 import TechBadge from "@/app/_components/TechBadge";
+import { Project } from "@/app/_types/projects";
 import Image from "next/image";
 import { HiArrowNarrowRight } from "react-icons/hi";
 
-const ProjectCard = () => {
+type ProjectCardProps = {
+  project: Project;
+};
+
+const ProjectCard = ({ project }: ProjectCardProps) => {
   return (
     <div className="flex flex-col gap-6 lg:flex-row lg:gap-12">
       <div className="h-full w-full">
         <Image
           width={420}
           height={304}
-          src="https://media.graphassets.com/qSXcz2JdTMOPKlteRZKY"
-          alt="teste"
+          src={project.thumbnail.url}
+          alt={`Thumbnail do projeto ${project.title}`}
           className="h-[200px] w-full rounded-lg object-cover sm:h-[300px] lg:min-h-full lg:w-[420px]"
         />
       </div>
@@ -24,28 +29,21 @@ const ProjectCard = () => {
             alt=""
             src="/images/icons/project-title-icon.svg"
           />
-          BookWise
+          {project.title}
         </h3>
 
-        <p className="my-6 text-gray-400">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore
-          debitis mollitia error, eum saepe expedita voluptatibus nobis iure sed
-          culpa voluptatem voluptas dignissimos necessitatibus explicabo nulla
-          adipisci dolore quisquam! Neque.
-        </p>
+        <p className="my-6 text-gray-400">{project.shortDescription}</p>
 
         <div className="mb-8 flex flex-wrap gap-x-2 gap-y-3 lg:max-w-[350px]">
-          <TechBadge name="React" />
-          <TechBadge name="React" />
-          <TechBadge name="React" />
-          <TechBadge name="React" />
-          <TechBadge name="React" />
-          <TechBadge name="React" />
-          <TechBadge name="React" />
-          <TechBadge name="React" />
+          {project.technologies.map((tech) => (
+            <TechBadge
+              key={`${project.title}-tech-${tech.name}`}
+              name={tech.name}
+            />
+          ))}
         </div>
 
-        <Link href="/projects/book-wise">
+        <Link href={`/projects/${project.slug}`}>
           Ver projeto
           <HiArrowNarrowRight />
         </Link>
