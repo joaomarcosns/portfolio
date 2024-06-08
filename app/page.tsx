@@ -27,7 +27,7 @@ const getPageData = async (): Promise<HomePageData> => {
           iconSvg
         }
         knownTechs {
-          iconsSvg
+          iconSvg
           name
           startDate
         }
@@ -46,7 +46,7 @@ const Home = async () => {
   return (
     <>
       <HeroSection homeInfo={data} />
-      <KnownTechs />
+      <KnownTechs techs={data.knownTechs} />
       <HighlightedProjects />
       <WorkExperience />
     </>
