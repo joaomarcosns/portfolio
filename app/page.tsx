@@ -12,7 +12,7 @@ export const metadata = {
 const getPageData = async (): Promise<HomePageData> => {
   const query = `
     query PageInfoQuery {
-      home(where: { slug: "home" }) {
+      home(where: {slug: "home"}) {
         introduction {
           raw
         }
@@ -32,19 +32,35 @@ const getPageData = async (): Promise<HomePageData> => {
           startDate
         }
         highlightProjects {
-        slug
-        thumbnail {
-          url
-        }
-        title
-        shortDescription
+          slug
+          thumbnail {
+            url
+          }
+          title
+          shortDescription
           technologies {
             name
           }
         }
       }
+      workExperiences(orderBy: startDate_DESC) {
+        companyLogo {
+          url
+        }
+        role
+        companyName
+        companyUrl
+        startDate
+        endDate
+        description {
+          raw
+        }
+        technologies {
+          name
+        }
+      }
     }
-  `;
+    `;
 
   return fetchHygraphQuery(
     query,
@@ -53,13 +69,13 @@ const getPageData = async (): Promise<HomePageData> => {
 };
 
 const Home = async () => {
-  const { home: data } = await getPageData();
+  const { home: data, workExperiences } = await getPageData();
   return (
     <>
       <HeroSection homeInfo={data} />
       <KnownTechs techs={data.knownTechs} />
       <HighlightedProjects projects={data.highlightProjects} />
-      <WorkExperience />
+      <WorkExperience experiences={workExperiences} />
     </>
   );
 };
