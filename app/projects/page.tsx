@@ -28,9 +28,6 @@ const getPageData = async (): Promise<ProjectsPageData> => {
 
 const projects = async () => {
   const { projects } = await getPageData();
-
-  console.log(projects);
-
   return (
     <>
       <PageIntroduction />
