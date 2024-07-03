@@ -1,6 +1,9 @@
 import ProjectDetails from "@/app/_components/pages/project/ProjectDetails";
 import ProjectSections from "@/app/_components/pages/project/ProjectSections";
-import { ProjectPageData } from "@/app/_types/page-info";
+import {
+  ProjectPageData,
+  ProjectsPageStaticData,
+} from "@/app/_types/page-info";
 import { fetchHygraphQuery } from "@/app/_utils/fetch-hygraph-query";
 import { notFound } from "next/navigation";
 
@@ -60,5 +63,18 @@ const Project = async ({ params: { slug } }: ProjectProps) => {
     </>
   );
 };
+
+export async function generateStaticParams() {
+  const query = `
+    query ProjectsSlugsQuery() {
+      projects(first: 100) {
+        slug
+      }
+    }
+  `;
+  const { projects } = await fetchHygraphQuery<ProjectsPageStaticData>(query);
+
+  return projects;
+}
 
 export default Project;
