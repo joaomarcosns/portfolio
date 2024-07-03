@@ -1,11 +1,40 @@
 import PageIntroduction from "../_components/pages/projects/PageIntroduction";
 import ProjectsList from "../_components/pages/projects/ProjectsList";
+import { ProjectsPageData } from "../_types/page-info";
+import { fetchHygraphQuery } from "../_utils/fetch-hygraph-query";
 
-const projects = () => {
+const getPageData = async (): Promise<ProjectsPageData> => {
+  const query = `
+    query ProjectsQuery {
+      projects {
+        shortDescription
+        slug
+        title
+        thumbnail {
+          url
+        }
+        technologies {
+          name
+        }
+      }
+    }
+    `;
+
+  return fetchHygraphQuery(
+    query,
+    1000 * 60 * 60 * 24, // 1 day
+  );
+};
+
+const projects = async () => {
+  const { projects } = await getPageData();
+
+  console.log(projects);
+
   return (
     <>
       <PageIntroduction />
-      <ProjectsList />
+      <ProjectsList projects={projects} />
     </>
   );
 };
