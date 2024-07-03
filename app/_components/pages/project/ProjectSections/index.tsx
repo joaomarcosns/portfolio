@@ -1,17 +1,11 @@
+import { ProjectSection } from "@/app/_types/projects";
 import Image from "next/image";
 
-const sections = [
-  {
-    title: "Login",
-    image: "https://media.graphassets.com/qSXcz2JdTMOPKlteRZKY",
-  },
-  {
-    title: "Home",
-    image: "https://media.graphassets.com/qSXcz2JdTMOPKlteRZKY",
-  },
-];
+type ProjectSectionsProps = {
+  sections: ProjectSection[];
+};
 
-const ProjectSections = () => {
+const ProjectSections = ({ sections }: ProjectSectionsProps) => {
   return (
     <section className="container my-12 flex flex-col gap-8 md:my-32 md:gap-32">
       {sections.map((section) => (
@@ -27,7 +21,7 @@ const ProjectSections = () => {
             height={672}
             className="aspect-auto w-full rounded-lg object-cover"
             alt={`Imagem da sessão ${section.title}`}
-            src={section.image}
+            src={section.image.url}
             unoptimized
           />
         </div>
