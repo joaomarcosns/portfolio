@@ -6,6 +6,7 @@ import SectionTitle from "../SectionTitle";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
 
 const contactFormSchema = z.object({
   name: z.string().min(3).max(100),
@@ -16,16 +17,22 @@ const contactFormSchema = z.object({
 type ContactFormData = z.infer<typeof contactFormSchema>;
 
 const ContactForm = () => {
-  const { handleSubmit, register } = useForm<ContactFormData>({
+  const { handleSubmit, register, reset } = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema),
   });
 
   const onSubmit = async (data: ContactFormData) => {
-    console.log(data);
+    try {
+      await axios.post("/api/contact", data);
+      reset();
+    } catch (error) {}
   };
 
   return (
-    <section className="flex items-center justify-center bg-gray-950 px-6 py-16 md:py-32">
+    <section
+      className="flex items-center justify-center bg-gray-950 px-6 py-16 md:py-32"
+      id="contact"
+    >
       <div className="mx-auto w-full max-w-[420px]">
         <SectionTitle
           title="Vamos trabalhar juntos? Entre em contato"

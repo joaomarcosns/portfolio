@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import TechBadge from "../../../TechBadge";
 import Button from "../../../Button";
@@ -11,6 +13,12 @@ type homeSectionProps = {
 };
 
 const HeroSection = ({ homeInfo }: homeSectionProps) => {
+  const handleContact = () => {
+    const contactSection = document.querySelector("#contact");
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
   return (
     <section className="flex w-full flex-col justify-end bg-hero-image bg-cover bg-center bg-no-repeat py-32 pb-10 sm:pb-32 lg:h-[755px] lg:pb-[110px]">
       <div className="container flex flex-col-reverse items-start justify-between lg:flex-row">
@@ -31,7 +39,7 @@ const HeroSection = ({ homeInfo }: homeSectionProps) => {
           </div>
 
           <div className="mt-6 flex flex-col sm:flex-row sm:items-center sm:gap-5 lg:mt-10">
-            <Button className="w-max shadow-button">
+            <Button className="w-max shadow-button" onClick={handleContact}>
               Entre em contato
               <HiArrowNarrowRight size={18} />
             </Button>
