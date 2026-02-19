@@ -88,19 +88,24 @@ export async function generateMetadata({
 }: ProjectProps): Promise<Metadata> {
   const data = await getProjectDetails(slug);
   const project = data.project;
+  const thumbnailUrl = project?.thumbnail?.url;
 
   return {
-    title: project.title,
-    description: project.description.text,
-    openGraph: {
-      images: [
-        {
-          url: project.thumbnail.url,
-          width: 1200,
-          height: 630,
+    title: project?.title ?? "Project",
+    description: project?.description?.text ?? "",
+    ...(thumbnailUrl
+      ? {
+        openGraph: {
+          images: [
+            {
+              url: thumbnailUrl,
+              width: 1200,
+              height: 630,
+            },
+          ],
         },
-      ],
-    },
+      }
+      : {}),
   };
 }
 

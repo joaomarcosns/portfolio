@@ -19,6 +19,7 @@ type ProjectDetailsProps = {
 
 const ProjectDetails = ({ project }: ProjectDetailsProps) => {
   const { locale, t } = useLocale();
+  const pageThumbnailUrl = project?.pageThumbnail?.url;
   const localizedDescription = getLocalizedContent(
     locale,
     project.description,
@@ -30,7 +31,9 @@ const ProjectDetails = ({ project }: ProjectDetailsProps) => {
       <motion.div
         className="absolute inset-0 z-[-1]"
         style={{
-          background: `url(/images/hero-bg.png) no-repeat center/cover, url(${project.pageThumbnail.url}) no-repeat center/cover`,
+          background: pageThumbnailUrl
+            ? `url(/images/hero-bg.png) no-repeat center/cover, url(${pageThumbnailUrl}) no-repeat center/cover`
+            : "url(/images/hero-bg.png) no-repeat center/cover",
         }}
         initial={{ opacity: 0, scale: 1.3 }}
         animate={{ opacity: 1, scale: 1 }}
