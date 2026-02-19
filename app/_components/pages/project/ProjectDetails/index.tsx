@@ -10,12 +10,21 @@ import { HiArrowNarrowLeft } from "react-icons/hi";
 import { TbBrandGithub } from "react-icons/tb";
 import { motion } from "framer-motion";
 import { fadeUpAnimation, techBadgeAnimation } from "@/app/_lib/animations";
+import { useLocale } from "@/app/_contexts/LocaleContext";
+import { getLocalizedContent } from "@/app/_lib/utils";
 
 type ProjectDetailsProps = {
   project: Project;
 };
 
 const ProjectDetails = ({ project }: ProjectDetailsProps) => {
+  const { locale, t } = useLocale();
+  const localizedDescription = getLocalizedContent(
+    locale,
+    project.description,
+    project.descriptionPt,
+  );
+
   return (
     <section className="relative flex w-full flex-col items-center justify-end overflow-hidden px-6 py-24 pb-10 sm:min-h-[750px] sm:pb-24">
       <motion.div
@@ -29,7 +38,7 @@ const ProjectDetails = ({ project }: ProjectDetailsProps) => {
       />
 
       <SectionTitle
-        subtitle="projetos"
+        subtitle={t.projectsSubtitle}
         title={project.title}
         className="items-center text-center sm:[&>h3]:text-4xl"
       />
@@ -38,7 +47,7 @@ const ProjectDetails = ({ project }: ProjectDetailsProps) => {
         className="my-4 max-w-[640px] text-center text-sm text-gray-400 sm:my-6 sm:text-base"
         {...fadeUpAnimation}
       >
-        <RichText content={project.description.raw} />
+        <RichText content={localizedDescription.raw} />
       </motion.div>
 
       <div className="flex w-full max-w-[330px] flex-wrap items-center justify-center gap-2">
@@ -60,7 +69,7 @@ const ProjectDetails = ({ project }: ProjectDetailsProps) => {
           <a href={project.githubUrl} target="_blank" rel="noreferrer">
             <Button className="min-w-[180px]">
               <TbBrandGithub size={20} />
-              Repositório
+              {t.repository}
             </Button>
           </a>
         )}
@@ -68,7 +77,7 @@ const ProjectDetails = ({ project }: ProjectDetailsProps) => {
           <a href={project.liveProjectUrl} target="_blank" rel="noreferrer">
             <Button className="min-w-[180px]">
               <FiGlobe size={20} />
-              Projeto Online
+              {t.liveProject}
             </Button>
           </a>
         )}
@@ -76,7 +85,7 @@ const ProjectDetails = ({ project }: ProjectDetailsProps) => {
 
       <Link href="/projects">
         <HiArrowNarrowLeft size={20} />
-        Voltar para projetos
+        {t.backToProjects}
       </Link>
     </section>
   );

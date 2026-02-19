@@ -12,6 +12,7 @@ export type Technology = {
 
 export type ProjectSection = {
   title: string;
+  titlePt?: string | null;
   image: {
     url: string;
   };
@@ -24,6 +25,7 @@ export type Project = {
   };
   title: string;
   shortDescription: string;
+  shortDescriptionPt?: string | null;
   technologies: Technology[];
   pageThumbnail: {
     url: string;
@@ -33,6 +35,9 @@ export type Project = {
     raw: RichTextContent;
     text: string;
   };
+  descriptionPt?: {
+    raw: RichTextContent;
+  } | null;
   liveProjectUrl?: string;
   githubUrl?: string;
 };

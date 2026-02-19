@@ -6,6 +6,7 @@ export type WorkExperience = {
     url: string;
   };
   role: string;
+  rolePt?: string | null;
   companyName: string;
   companyUrl: string;
   startDate: string;
@@ -14,4 +15,7 @@ export type WorkExperience = {
   description: {
     raw: RichTextContent;
   };
+  descriptionPt?: {
+    raw: RichTextContent;
+  } | null;
 };

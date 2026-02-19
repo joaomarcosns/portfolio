@@ -6,6 +6,7 @@ import ContactForm from "./_components/ContactForm";
 import Footer from "./_components/Footer/inde";
 import { Toaster } from "./_components/Toast";
 import { BackToTop } from "./_components/BackToTop";
+import { LocaleProvider } from "./_contexts/LocaleContext";
 
 const firaCode = Fira_Code({
   variable: "--font-code",
@@ -32,12 +33,14 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className={firaCode.variable}>
       <body>
-        <Toaster />
-        <BackToTop />
-        <Header />
-        {children}
-        <ContactForm />
-        <Footer />
+        <LocaleProvider>
+          <Toaster />
+          <BackToTop />
+          <Header />
+          {children}
+          <ContactForm />
+          <Footer />
+        </LocaleProvider>
       </body>
     </html>
   );

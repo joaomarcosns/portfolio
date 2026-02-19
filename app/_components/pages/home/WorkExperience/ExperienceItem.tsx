@@ -8,28 +8,41 @@ import { differenceInMonths, differenceInYears, format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { motion } from "framer-motion";
 import { fadeUpAnimation, techBadgeAnimation } from "@/app/_lib/animations";
+import { useLocale } from "@/app/_contexts/LocaleContext";
+import { getLocalizedContent } from "@/app/_lib/utils";
 
 type ExperienceItemProps = {
   experience: WorkExperience;
 };
 
 const ExperienceItem = ({ experience }: ExperienceItemProps) => {
+  const { locale, t } = useLocale();
+
   const {
     endDate,
     companyName,
     companyLogo,
     companyUrl,
     description,
+    descriptionPt,
     role,
+    rolePt,
     technologies,
   } = experience;
+
+  const localizedRole = getLocalizedContent(locale, role, rolePt);
+  const localizedDescription = getLocalizedContent(
+    locale,
+    description,
+    descriptionPt,
+  );
 
   const startDate = new Date(experience.startDate);
 
   const formattedStartDate = format(startDate, "MMM yyyy", { locale: ptBR });
   const formattedEndDate = endDate
     ? format(new Date(endDate), "MMM yyyy", { locale: ptBR })
-    : "O momento";
+    : t.currentJob;
 
   const end = endDate ? new Date(endDate) : new Date();
 
@@ -39,11 +52,10 @@ const ExperienceItem = ({ experience }: ExperienceItemProps) => {
 
   const formattedDuration =
     years > 0
-      ? `${years} ano${years > 1 ? "s" : ""}${
-          monthsRemaining > 0
-            ? ` e ${monthsRemaining} mes${monthsRemaining > 1 ? "es" : ""}`
-            : ""
-        }`
+      ? `${years} ano${years > 1 ? "s" : ""}${monthsRemaining > 0
+        ? ` e ${monthsRemaining} mes${monthsRemaining > 1 ? "es" : ""}`
+        : ""
+      }`
       : `${months} mes${months > 1 ? "es" : ""}`;
 
   return (
@@ -59,7 +71,7 @@ const ExperienceItem = ({ experience }: ExperienceItemProps) => {
             width={40}
             height={40}
             className="rounded-full"
-            alt={`Logo da empresa ${companyName}`}
+            alt={`${t.companyLogoAlt} ${companyName}`}
           />
         </div>
 
@@ -76,17 +88,17 @@ const ExperienceItem = ({ experience }: ExperienceItemProps) => {
           >
             @ {companyName}
           </a>
-          <h4 className="text-gray-300">{role}</h4>
+          <h4 className="text-gray-300">{localizedRole}</h4>
           <span className="text-gray-500">
             {formattedStartDate} • {formattedEndDate} • ({formattedDuration})
           </span>
           <div className="text-gray-400">
-            <RichText content={description.raw} />
+            <RichText content={localizedDescription.raw} />
           </div>
         </div>
 
         <p className="mb-3 mt-6 text-sm font-semibold text-gray-400">
-          Competência
+          {t.skills}
         </p>
         <div className="mb-8 flex flex-wrap gap-x-2 gap-y-3 lg:max-w-[350px]">
           {technologies.map((tech, i) => (

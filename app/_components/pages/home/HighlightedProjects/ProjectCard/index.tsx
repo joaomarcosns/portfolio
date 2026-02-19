@@ -7,12 +7,21 @@ import Image from "next/image";
 import { HiArrowNarrowRight } from "react-icons/hi";
 import { motion } from "framer-motion";
 import { fadeUpAnimation } from "@/app/_lib/animations";
+import { useLocale } from "@/app/_contexts/LocaleContext";
+import { getLocalizedContent } from "@/app/_lib/utils";
 
 type ProjectCardProps = {
   project: Project;
 };
 
 const ProjectCard = ({ project }: ProjectCardProps) => {
+  const { locale, t } = useLocale();
+  const localizedShortDescription = getLocalizedContent(
+    locale,
+    project.shortDescription,
+    project.shortDescriptionPt,
+  );
+
   return (
     <motion.div
       className="flex flex-col gap-6 lg:flex-row lg:gap-12"
@@ -57,7 +66,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
           {...fadeUpAnimation}
           transition={{ duration: 0.2, delay: 0.3 }}
         >
-          {project.shortDescription}
+          {localizedShortDescription}
         </motion.p>
 
         <div className="mb-8 flex flex-wrap gap-x-2 gap-y-3 lg:max-w-[350px]">
@@ -74,7 +83,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
         </div>
 
         <Link href={`/projects/${project.slug}`}>
-          Ver projeto
+          {t.viewProject}
           <HiArrowNarrowRight />
         </Link>
       </div>

@@ -11,6 +11,9 @@ export type HomePageInfo = {
   introduction: {
     raw: RichTextContent;
   };
+  introductionPt: {
+    raw: RichTextContent;
+  } | null;
   technologies: KnownTech[];
   profilePicture: {
     url: string;

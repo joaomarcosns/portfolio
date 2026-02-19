@@ -12,6 +12,7 @@ const getPageData = async (): Promise<ProjectsPageData> => {
     query ProjectsQuery {
       projects {
         shortDescription
+        shortDescriptionPt
         slug
         title
         thumbnail {

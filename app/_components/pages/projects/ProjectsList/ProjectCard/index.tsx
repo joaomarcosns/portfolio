@@ -1,11 +1,22 @@
+"use client";
+
 import { Project } from "@/app/_types/projects";
 import Image from "next/image";
+import { useLocale } from "@/app/_contexts/LocaleContext";
+import { getLocalizedContent } from "@/app/_lib/utils";
 
 type ProjectCardProps = {
   project: Project;
 };
 
 const ProjectCard = ({ project }: ProjectCardProps) => {
+  const { locale } = useLocale();
+  const localizedShortDescription = getLocalizedContent(
+    locale,
+    project.shortDescription,
+    project.shortDescriptionPt,
+  );
+
   const technologies = project.technologies.map((x) => x.name).join(", ");
   return (
     <div className="group flex h-[436px] flex-col overflow-hidden rounded-lg border-2 border-gray-800 bg-gray-800 opacity-70 transition-all hover:border-gray-500 hover:opacity-100">
@@ -25,7 +36,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
           {project.title}
         </strong>
         <p className="mt-2 line-clamp-4 text-gray-400">
-          {project.shortDescription}
+          {localizedShortDescription}
         </p>
 
         <span className="mt-auto block truncate text-sm font-medium text-gray-300">

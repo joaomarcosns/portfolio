@@ -26,15 +26,20 @@ const getProjectDetails = async (slug: string): Promise<ProjectPageData> => {
       }
       sections {
         title
+        titlePt
         image {
           url
         }
       }
       title
       shortDescription
+      shortDescriptionPt
       description {
         raw
         text
+      }
+      descriptionPt {
+        raw
       }
       technologies {
         name

@@ -16,6 +16,9 @@ const getPageData = async (): Promise<HomePageData> => {
         introduction {
           raw
         }
+        introductionPt {
+          raw
+        }
         technologies {
           name
         }
@@ -38,6 +41,7 @@ const getPageData = async (): Promise<HomePageData> => {
           }
           title
           shortDescription
+          shortDescriptionPt
           technologies {
             name
           }
@@ -48,11 +52,15 @@ const getPageData = async (): Promise<HomePageData> => {
           url
         }
         role
+        rolePt
         companyName
         companyUrl
         startDate
         endDate
         description {
+          raw
+        }
+        descriptionPt {
           raw
         }
         technologies {
