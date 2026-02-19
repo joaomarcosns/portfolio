@@ -53,7 +53,7 @@ const ExperienceItem = ({ experience }: ExperienceItemProps) => {
       transition={{ duration: 0.5 }}
     >
       <div className="flex flex-col items-center gap-4">
-        <div className="rounded-full border border-gray-500 p-0.5">
+        <div className="rounded-full border border-gray-600 p-0.5">
           <Image
             src={companyLogo.url}
             width={40}
@@ -63,7 +63,7 @@ const ExperienceItem = ({ experience }: ExperienceItemProps) => {
           />
         </div>
 
-        <div className="h-full w-[1px] bg-gray-800" />
+        <div className="h-full w-[1px] bg-gradient-to-b from-gray-700 to-gray-800" />
       </div>
 
       <div>
@@ -71,7 +71,7 @@ const ExperienceItem = ({ experience }: ExperienceItemProps) => {
           <a
             href={companyUrl}
             target="_blank"
-            className="text-gray-500 transition-colors hover:text-emerald-500"
+            className="text-gray-500 transition-colors hover:text-white"
             rel="noreferrer"
           >
             @ {companyName}

@@ -4,7 +4,8 @@
 
 @layer base {
   body {
-    @apply bg-gray-900 text-gray-100
+    @apply text-gray-100;
+    background-color: #111827;
   }
 }
 
@@ -22,6 +23,6 @@
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: #10b981;
+  background-color: #6b7280;
   border-radius: 14px;
 }

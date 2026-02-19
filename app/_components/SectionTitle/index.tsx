@@ -17,7 +17,7 @@ const SectionTitle = ({ title, subtitle, className }: ISectionTitleProps) => {
   return (
     <div className={cn("flex flex-col gap-4", className)}>
       <motion.span
-        className="font-mono text-sm text-emerald-400"
+        className="font-mono text-sm text-gray-500"
         {...animProps}
         transition={{ duration: 0.5 }}
       >{`../${subtitle}`}</motion.span>

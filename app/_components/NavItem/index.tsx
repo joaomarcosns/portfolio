@@ -18,11 +18,11 @@ const NavItem = ({ label, href }: INavItem) => {
     <Link
       href={href}
       className={cn(
-        "flex items-center gap-2 font-sans font-medium text-gray-400",
+        "flex items-center gap-2 font-sans font-medium text-gray-400 transition-colors hover:text-gray-200",
         isActive && "text-gray-50",
       )}
     >
-      <span className="text-emerald-400">$</span>
+      <span className="text-gray-600">$</span>
       {label}
     </Link>
   );

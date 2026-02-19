@@ -12,7 +12,7 @@ const KnownTech = ({ tech }: IKnownTechProps) => {
     "pt-BR",
   ).replace("há", "");
   return (
-    <div className="rounded-lg, flex flex-col gap-2 bg-gray-600/20 p-6 text-gray-500 transition-all hover:bg-gray-600/30 hover:text-emerald-500">
+    <div className="flex flex-col gap-2 rounded-lg border border-gray-700/50 bg-gray-800/40 p-6 text-gray-400 transition-all hover:border-gray-500 hover:bg-gray-800/60 hover:text-white">
       <div className="flex items-center justify-between">
         <p className="font-medium">{tech.name}</p>
         <CMSIcon icon={tech.iconSvg} />

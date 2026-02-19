@@ -8,7 +8,7 @@ const Button = ({ children, className, ...props }: ButtonProps) => {
     <button
       {...props}
       className={cn(
-        "flex items-center justify-center gap-2 rounded-lg bg-emerald-600 px-4 py-3 text-gray-50 transition-all hover:bg-emerald-500 disabled:opacity-50",
+        "flex items-center justify-center gap-2 rounded-lg bg-white px-4 py-3 text-gray-900 transition-all hover:bg-gray-200 disabled:opacity-50",
         className,
       )}
     >
