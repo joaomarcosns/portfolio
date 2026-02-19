@@ -21,6 +21,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
     project.shortDescription,
     project.shortDescriptionPt,
   );
+  const thumbnailUrl = project.thumbnail?.url ?? "/images/hero-bg.png";
 
   return (
     <motion.div
@@ -38,7 +39,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
         transition={{ duration: 0.3, delay: 0.3 }}
       >
         <Image
-          src={project.thumbnail.url}
+          src={thumbnailUrl}
           width={420}
           height={304}
           alt={`Thumbnail do projeto ${project.title}`}

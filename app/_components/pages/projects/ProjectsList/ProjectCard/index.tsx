@@ -18,6 +18,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
   );
 
   const technologies = project.technologies.map((x) => x.name).join(", ");
+  const thumbnailUrl = project.thumbnail?.url ?? "/images/hero-bg.png";
   return (
     <div className="group flex h-[436px] flex-col overflow-hidden rounded-lg border-2 border-gray-800 bg-gray-800 opacity-70 transition-all hover:border-gray-500 hover:opacity-100">
       <div className="h-48 w-full overflow-hidden">
@@ -26,7 +27,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
           height={200}
           className="h-full w-full object-cover transition-all duration-500 group-hover:scale-110"
           alt={`Thumbnail do projeto ${project.title}`}
-          src={project.thumbnail.url}
+          src={thumbnailUrl}
           unoptimized
         />
       </div>

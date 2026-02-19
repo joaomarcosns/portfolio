@@ -20,9 +20,9 @@ export type ProjectSection = {
 
 export type Project = {
   slug: string;
-  thumbnail: {
+  thumbnail?: {
     url: string;
-  };
+  } | null;
   title: string;
   shortDescription: string;
   shortDescriptionPt?: string | null;
