@@ -47,9 +47,12 @@ export const LocaleProvider = ({ children }: { children: ReactNode }) => {
     if (stored === "en" || stored === "pt") setLocaleState(stored);
   }, []);
 
-  const setLocale = (newLocale: Locale) => {
-    setLocaleState(newLocale);
-    localStorage.setItem("locale", newLocale);
+  const setLocale: Dispatch<SetStateAction<Locale>> = (value) => {
+    setLocaleState((prevLocale) => {
+      const nextLocale = typeof value === "function" ? value(prevLocale) : value;
+      localStorage.setItem("locale", nextLocale);
+      return nextLocale;
+    });
   };
 
   return (
