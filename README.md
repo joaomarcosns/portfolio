@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Prerequisites
 
-- Node.js `v25.6.1` (or newer)
+- Node.js `24.x`
 
 ## Getting Started
 
