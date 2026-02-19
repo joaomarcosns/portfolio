@@ -1,11 +1,19 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+  Dispatch,
+  SetStateAction,
+} from "react";
 import { Locale, translations } from "../_lib/translations";
 
 type LocaleContextType = {
   locale: Locale;
-  setLocale: (locale: Locale) => void;
+  setLocale: Dispatch<SetStateAction<Locale>>;
   t: (typeof translations)[Locale];
 };
 
