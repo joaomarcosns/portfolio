@@ -16,6 +16,7 @@
     "@graphcms/rich-text-react-renderer": "^0.6.1",
     "@graphcms/rich-text-types": "^0.5.1",
     "@hookform/resolvers": "^3.4.2",
+    "@vercel/analytics": "^1.6.1",
     "axios": "^1.7.2",
     "clsx": "^2.1.1",
     "date-fns": "^3.6.0",

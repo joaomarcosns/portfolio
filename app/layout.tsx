@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Fira_Code } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import Header from "./_components/Header";
 import ContactForm from "./_components/ContactForm";
@@ -40,6 +41,7 @@ export default function RootLayout({
           {children}
           <ContactForm />
           <Footer />
+          <Analytics />
         </LocaleProvider>
       </body>
     </html>
